@@ -24,6 +24,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	private static final String DELETE_BY_ID = "DELETE FROM EMPL WHERE ENO = ?";
 	private static final String FIND_ALL = "SELECT * FROM EMPL";
 	private static final String UPDATE_BY_ID = "UPDATE EMPL SET ENAME=?,SALARY=? WHERE ENO = ?";
+	private static final String FIND_BY_NAME_SALRY = "select * from empl where name like ? and salary <= ?";
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -87,4 +88,25 @@ public int update(Employee employee) {
 	return jdbcTemplate.update(UPDATE_BY_ID,employee.getName(),employee.getSalary(),employee.getEno());
 	
 }
+
+@Override
+public List<Employee> findByNameAndSalary(String name, double salary) {
+	List<Employee> list = jdbcTemplate.query(FIND_BY_NAME_SALRY,new Object[] { "%" + name + "%", salary }, (rs, i) -> {
+		Employee employee = new Employee();
+		employee.setEno(rs.getInt("ENO"));
+		employee.setName(rs.getString("ENAME"));
+		employee.setSalary(rs.getDouble("SALARY"));
+		return employee;
+	});
+	return list;
+
 }
+
+
+}
+
+
+
+
+
+

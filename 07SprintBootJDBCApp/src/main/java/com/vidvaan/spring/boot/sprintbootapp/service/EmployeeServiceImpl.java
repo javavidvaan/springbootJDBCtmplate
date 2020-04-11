@@ -39,4 +39,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int update(Employee employee) {
         return employeeDAO.update(employee);
 	}
+
+	@Override
+	public List<Employee> findByNameAndSalary(String name, double salary) {
+		// TODO Auto-generated method stub
+		return employeeDAO.findByNameAndSalary(name, salary);
+	}
 }

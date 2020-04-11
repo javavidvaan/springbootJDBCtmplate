@@ -15,4 +15,6 @@ public interface EmployeeDAO {
 	public void deleteById(int eno);
 	
 	public int update(Employee employee);
+	
+	List<Employee> findByNameAndSalary(String name, double salary);
 }

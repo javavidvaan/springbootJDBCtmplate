@@ -63,4 +63,13 @@ public class EmployeeController {
 		return employeeService.get();
 
 	}
-}
+	@GetMapping("/find/{ename}/{salary}")
+	public List<Employee> findByNameAndSalary(@PathVariable(name = "ename,salary") String name,double salary) {
+		logger.info("Find by eno :{}", name);
+		if(name == null) {
+			throw new RuntimeException("Employee not found for the name:"+name);
+//			throw new EmployeeNotFoundException();
+		
+	}
+		return employeeService.findByNameAndSalary(name, salary);
+}}
