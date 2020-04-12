@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/mail")
-public class SimpleMailController {
+public class MailController {
 
 	@Autowired
 	private JavaMailSender mailSender;
